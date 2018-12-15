@@ -1,0 +1,27 @@
+extends layout
+
+block content
+  h1= title
+  p Simple blockchain
+  form(method="POST" action="/")
+    input(name="data" placeholder="Какие то данные для блока" required)
+    button(type="submit") Добавить блок
+  
+  h2 Блоки
+
+  table
+    thead
+      tr
+        td ID
+        td Hash
+        td Data
+        td Date
+        td Previos hash
+    tbody
+      each block in chain
+        tr
+          td= block.index
+          td= block.hash
+          td= (block.data || '-----')
+          td= new Date(block.timestamp)
+          td= block.prevHash
